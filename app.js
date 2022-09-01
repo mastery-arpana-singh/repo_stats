@@ -5,7 +5,6 @@ const bodyParser = require('body-parser')
 const helmet = require('helmet')
 const apiRoutes = require('./routes')
 const path = require('path');
-
 //declaring an instance or creating an application instance
 const app = express()
 

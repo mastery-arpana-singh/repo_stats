@@ -1,26 +1,70 @@
 const express = require('express');
 const router = express.Router();
-const request = require('request');
+const axios = require('axios');
+const _ = require('lodash');
+const {token} = require('../config/config');
 
-router.get('/testapi', (req, res) => {
-    var url = 'https://api.github.com/repos/masterysystems/mastery-frontend/stats/contributors';
+router.get('/top-contributors', async (req, res) => {
+    try {
 
-    request.get({
-    uri: url, 
+        const repo = req.query.repo;
+    const contributorsUrl = `https://api.github.com/repos/masterysystems/${repo}/contributors?q=contributions&order=desc`;
+    const commitsUrl = `https://api.github.com/repos/masterysystems/${repo}/stats/contributors`;
+
+   const contributorsList = await axios.get(contributorsUrl,{
     headers: {
-        'user-agent': 'node.js',
-        'X-Auth-Token': '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'
+        'Authorization': `Bearer ${token}`
     }
-    }, function(err, httpResponse, body) {
-    if (err) {
-        console.log("i am here 17");
-        return console.error('get failed:', err);
-    }
-    console.log("i am here 20",httpResponse);
-    console.log('Get successful!  Server responded with:', body);
-    res.send(body);
     });
-    
+
+        const commits = await axios.get(commitsUrl,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+
+        const users =  {}
+         contributorsList.data.map(c => users[c.id] = c)
+
+        const output = []
+        commits.data.forEach(c =>{
+            const stats  = {
+                a: 0,
+                d:0,
+                c:0
+            }
+            c.weeks.map(w =>{
+                stats['a'] += w.a;
+                stats['d'] += w.d;
+                stats['c'] += w.c;
+            })
+            if(users[c.author.id]){
+                users[c.author.id].stats = stats
+            // output.push(users[c.author.id])
+            output.push({
+                name: c.author.login,
+                id: c.author.id,
+                picture:c.author.avatar_url,
+                commits: stats.c,
+                contributions: users[c.author.id].contributions,
+                additions: stats.a,
+                deletions: stats.d,
+            })
+            }
+
+        })
+
+        const sorted = _.orderBy(output,'contributions','desc')
+
+        return res.status(200).json(sorted)
+    }catch (e) {
+        console.log(e)
+        return res.status(500).json(
+            'Oops something went wrong!'
+        )
+    }
+
 });
 
 module.exports = router;
