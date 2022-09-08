@@ -1,0 +1,481 @@
+{
+  "data": {
+    "repository": {
+      "defaultBranchRef": {
+        "name": "main",
+        "target": {
+          "history": {
+            "totalCount": 35,
+            "pageInfo": {
+              "endCursor": "661b973d9dbf9cfa6cd5e52ac8ec3434fd983d80 34",
+              "hasNextPage": false
+            },
+            "nodes": [
+              {
+                "committedDate": "2022-09-08T14:09:37Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T13:33:12Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T13:15:03Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T13:02:43Z",
+                "additions": 1,
+                "deletions": 1,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T12:43:51Z",
+                "additions": 0,
+                "deletions": 0,
+                "author": {
+                  "name": "Dhananjay Jadhav",
+                  "email": "ext.dhananjay.jadhav@mastery.net",
+                  "user": {
+                    "id": "MDQ6VXNlcjY0ODMzNjEx",
+                    "login": "mastery-dhananjay-jadhav"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T12:40:52Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T11:53:52Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T11:46:03Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T11:16:05Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T11:14:08Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T11:04:02Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T10:50:20Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T10:48:45Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T09:40:45Z",
+                "additions": 6,
+                "deletions": 6,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T09:17:30Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T08:34:56Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T08:27:30Z",
+                "additions": 1,
+                "deletions": 0,
+                "author": {
+                  "name": "mastery-vishal-singh",
+                  "email": "103555734+mastery-vishal-singh@users.noreply.github.com",
+                  "user": {
+                    "id": "U_kgDOBiwilg",
+                    "login": "mastery-vishal-singh"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T08:20:55Z",
+                "additions": 64,
+                "deletions": 8,
+                "author": {
+                  "name": "Atul Ahire",
+                  "email": "87036603+mastery-atul-ahire@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjg3MDM2NjAz",
+                    "login": "mastery-atul-ahire"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T08:11:52Z",
+                "additions": 4,
+                "deletions": 4,
+                "author": {
+                  "name": "Suraj Katare",
+                  "email": "ext.suraj.katare@mastery.net",
+                  "user": {
+                    "id": "MDQ6VXNlcjY0Nzg4MzYz",
+                    "login": "mastery-suraj-katare"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T08:05:47Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T07:54:11Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T07:43:10Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T07:38:51Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T07:37:36Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T07:27:53Z",
+                "additions": 3,
+                "deletions": 0,
+                "author": {
+                  "name": "Anagha Nandanwar",
+                  "email": "ext.anagha.nandanwar@mastery.net",
+                  "user": {
+                    "id": "MDQ6VXNlcjczOTQ1ODUw",
+                    "login": "mastery-Anagha-Nandanwar"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T06:50:42Z",
+                "additions": 4,
+                "deletions": 4,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T06:27:53Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T06:26:37Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T05:58:41Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T05:55:33Z",
+                "additions": 2,
+                "deletions": 2,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T04:47:56Z",
+                "additions": 28,
+                "deletions": 0,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T02:50:04Z",
+                "additions": 6,
+                "deletions": 6,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T02:24:49Z",
+                "additions": 1,
+                "deletions": 1,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T02:23:27Z",
+                "additions": 1,
+                "deletions": 1,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              },
+              {
+                "committedDate": "2022-09-08T00:07:36Z",
+                "additions": 8,
+                "deletions": 8,
+                "author": {
+                  "name": "Masterybot",
+                  "email": "masterybot@users.noreply.github.com",
+                  "user": {
+                    "id": "MDQ6VXNlcjUxMzQwNzQ3",
+                    "login": "masterybot"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "stargazers": {
+        "totalCount": 12
+      },
+      "releases": {
+        "totalCount": 287
+      }
+    }
+  }
+}

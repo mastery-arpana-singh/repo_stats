@@ -1,0 +1,97 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Github APIs",
+    "description": "Github APIs application",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/test",
+  "tags": [
+    {
+      "name": "Contributors",
+      "description": "API for contributors in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/top-contributors": {
+      "get": {
+        "tags": ["Contributors"],
+        "summary": "Get top contributors",
+        "parameters": [{
+          "name": "repo",
+          "in": "query",
+          "description": "Name of the repo",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/all-contributors": {
+      "get": {
+        "tags": ["Contributors"],
+        "summary": "Get all contributors weekly. monthly, user based",
+        "parameters": [{
+          "name": "repo",
+          "in": "query",
+          "description": "Name of the repo",
+          "required": true,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/repo-list": {
+      "get": {
+        "tags": ["Repo"],
+        "summary": "Get all repos",
+        "parameters": [{
+          "name": "per_page",
+          "in": "query",
+          "description": "results per page",
+          "required": true,
+          "type": "number"
+        },{
+          "name": "page",
+          "in": "query",
+          "description": "end cursor value",
+          "required": false,
+          "type": "string"
+        }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "contributors": {
+      "required": ["repo"],
+      "properties": {
+        "repo": {
+          "type": "string"
+        }
+        }
+    }
+
+
+}
+}

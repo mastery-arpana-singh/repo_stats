@@ -4,6 +4,7 @@ const axios = require('axios');
 const moment = require('moment');
 const _ = require('lodash');
 const {token} = require('../config/config');
+const {getPaginatedResults} = require("../helpers/github-pagination");
 
 router.get('/top-contributors', async (req, res) => {
     try {
@@ -154,20 +155,188 @@ router.get('/all-contributors', async (req, res) => {
     }
 
 });
+
+router.get('/repo-list', async (req, res) => {
+    try {
+
+        const contributorsUrl = `https://api.github.com/graphql`;
+
+        let filters = `first: ${req.query.per_page}`
+        if(req.query.page){
+            filters+=` after:"${req.query.page}"`
+        }
+        const data = await axios.post(contributorsUrl,{query:
+            `query myOrgRepos {
+  search(query: "org:masterysystems", type: REPOSITORY, ${filters}) {
+    repositoryCount,
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+    },
+    edges {
+      node {
+        ... on Repository {
+          name,
+          id,
+          createdAt
+        }
+      }
+    }
+  }
+}
+`
+        },{
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        return res.status(200).json(data.data)
+    }catch (e) {
+        console.log(e)
+        return res.status(500).json(
+            'Oops something went wrong!'
+        )
+    }
+
+});
+router.get('/repo-list-commits', async (req, res) => {
+    try {
+
+        const contributorsUrl = `https://api.github.com/graphql`;
+        const since = "2022-09-08T00:00:00Z"
+        const data = await axios.post(contributorsUrl,{query:
+            `query myOrgRepos {
+  search(query: "org:masterysystems", type: REPOSITORY, first: 100) {
+    repositoryCount
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        ... on Repository {
+          name
+          id
+          createdAt
+          defaultBranchRef {
+            target {
+              ... on Commit {
+                history(since: "${since}") {
+                  totalCount
+                  pageInfo {
+                    endCursor
+                    startCursor
+                    hasNextPage
+                  }
+                  edges {
+                    node {
+                        committedDate
+                        additions
+                        deletions
+                        author {
+                          name
+                          email
+                           user {
+                            id
+                            login
+                          }
+                        }
+                      
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`
+        },{
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        const repoCount = data.data.data.search.repositoryCount
+        const repos = data.data.data.search.edges;
+
+        const output = []
+        for (const repo of repos) {
+            const repoData = {
+                repoName: repo.node.name,
+                repoCreatedAt: repo.node.createdAt,
+                commits: []
+            }
+
+            const branchData = repo.node.defaultBranchRef
+
+            const totalCommits = branchData.target.history.totalCount
+            const endCursor = branchData.target.history.pageInfo.endCursor
+            const hasNextPage = branchData.target.history.pageInfo.hasNextPage
+            let extraCommits = []
+                if(hasNextPage){
+                    extraCommits = await getPaginatedResults(totalCommits,endCursor, repoData.repoName, since)
+                }
+            const commits = [...branchData.target.history.edges, ...extraCommits]
+
+
+            let commitsObject = {}
+            for (const commit of commits) {
+                const com = {
+                    author: commit.node.author.user ? commit.node.author.user.login : commit.node.author.email,
+                    commits :[]
+                }
+
+                const existingUser = commitsObject[com.author]
+                if(existingUser){
+                    const  i = existingUser.commits.findIndex(c => c.committedDate === moment(commit.node.committedDate).format('YYYY-MM-DD'))
+                    if(i > -1){
+                        existingUser.commits[i].additions += commit.node.additions
+                        existingUser.commits[i].deletions += commit.node.deletions
+                        existingUser.commits[i].commitCount += 1
+                    }else{
+                        existingUser.commits.push({
+                            committedDate: moment(commit.node.committedDate).format('YYYY-MM-DD'),
+                            additions: commit.node.additions,
+                            deletions: commit.node.deletions,
+                            commitCount:1
+                        })
+                    }
+                }else{
+                    com.commits.push({
+                        committedDate: moment(commit.node.committedDate).format('YYYY-MM-DD'),
+                        additions: commit.node.additions,
+                        deletions: commit.node.deletions,
+                        commitCount:1
+                    })
+                    commitsObject[com.author] = com;
+                }
+
+                // commitsObject = {}
+            }
+            // commitsData.push()
+            repoData.commits.push(...Object.values(commitsObject))
+            output.push(repoData)
+
+        }
+
+
+
+        return res.status(200).json(output)
+    }catch (e) {
+        console.log(e)
+        return res.status(500).json(
+            'Oops something went wrong!'
+        )
+    }
+
+});
+
+
 module.exports = router;
 
-
-
-// [{
-//     month: 'name',
-//     weeks:[{
-//         name: '',
-//         users:[{
-//             name: '',
-//             a:'',
-//             d:'',
-//             c:'',
-//         }]
-//     }]
-//         ...
-// }]

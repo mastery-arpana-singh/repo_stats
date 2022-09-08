@@ -1,0 +1,45 @@
+query myOrgRepos {
+  search(query: "org:masterysystems", type: REPOSITORY, first: 100) {
+    repositoryCount
+    pageInfo {
+      endCursor
+      startCursor
+      hasNextPage
+    }
+    edges {
+      node {
+        ... on Repository {
+          name
+          id
+          createdAt
+          defaultBranchRef {
+            target {
+              ... on Commit {
+                history(since: "2022-09-01T18:42:19Z") {
+                  totalCount
+                  pageInfo {
+                    endCursor
+                    startCursor
+                    hasNextPage
+                  }
+                  edges {
+                    node {
+                        committedDate
+                        additions
+                        deletions
+                        author {
+                          name
+                          email
+                        }
+
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
