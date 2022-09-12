@@ -3,8 +3,11 @@ const router = express.Router();
 const axios = require('axios');
 const moment = require('moment');
 const _ = require('lodash');
-const {token} = require('../config/config');
+const {token,base_url} = require('../config/config');
 const {getPaginatedResults} = require("../helpers/github-pagination");
+const fs = require('fs');
+const {getRepoData} = require("../controllers/graphqlCall");
+const logger = require('../helpers/logger');
 
 router.get('/top-contributors', async (req, res) => {
     try {
@@ -276,12 +279,13 @@ router.get('/repo-list-commits', async (req, res) => {
             const branchData = repo.node.defaultBranchRef
 
             const totalCommits = branchData.target.history.totalCount
+            repoData.totalCommits = totalCommits;
             const endCursor = branchData.target.history.pageInfo.endCursor
             const hasNextPage = branchData.target.history.pageInfo.hasNextPage
             let extraCommits = []
-                if(hasNextPage){
-                    extraCommits = await getPaginatedResults(totalCommits,endCursor, repoData.repoName, since)
-                }
+            if(hasNextPage){
+                extraCommits = await getPaginatedResults(totalCommits,endCursor, repoData.repoName, since)
+            }
             const commits = [...branchData.target.history.edges, ...extraCommits]
 
 
@@ -320,6 +324,7 @@ router.get('/repo-list-commits', async (req, res) => {
                 // commitsObject = {}
             }
             // commitsData.push()
+            
             repoData.commits.push(...Object.values(commitsObject))
             output.push(repoData)
 
@@ -337,6 +342,54 @@ router.get('/repo-list-commits', async (req, res) => {
 
 });
 
+router.post('/all-repo-details', async (req, res) => {
+    try {
+        let from = req.body.from;
+        let to = req.body.to;
+        from = moment(from).format();
+        to = moment(to).format();
+        const contributorsUrl = `${base_url}/graphql`;
+        //const since = "2022-09-09T00:00:00Z"
+        const since = from;
+        const until = to;
+        //const since = moment().subtract(5,'days');
+        logger.info(`${moment()}: Since value is ${since}`);
+        logger.info(`${moment()}: Until value is ${until}`);
+        let output = await getRepoData(contributorsUrl, since, until, token, null);
+        let fileContent = JSON.stringify(output);
+        /*converter.json2csv(output, (err, csv) => {
+            if (err) {
+                throw err;
+            }
+            fs.writeFile("data/out.csv", csv, 'utf8', function (err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                    return console.log(err);
+                }        
+                console.log("JSON file has been saved.");
+            });
+        });*/
+        
+        fs.writeFile("data/output.json", fileContent, 'utf8', function (err) {
+            if (err) {
+                logger.info(`${moment()}: An error occured while writing JSON Object to File.`);
+                return console.log(err);
+            }   
+            res.download("data/output.json", (err) => {
+                if (err) {
+                    logger.info(`${moment()}: Some error occured downloading file ${err}`);
+                }
+            });
+            logger.info(`${moment()}: JSON file has been saved.`);
+        });
+        //return res.status(200).json(output)
+    }catch (e) {
+        logger.info(`${moment()}: Error occured : ${e}`);
+        return res.status(500).json(
+            'Oops something went wrong!'
+        )
+    }
 
+});
 module.exports = router;
 

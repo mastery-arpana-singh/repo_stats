@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Github Infomation Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container" style="background-color:rgb(11, 180, 199);">
+      <h1>Github Infomation Application</h1>
+      <form action="http://localhost:3000/api/github/all-repo-details" method="POST">
+        <div class="form-group">
+          <label for="From">From</label>
+          <input type="date" class="form-control" id="from" placeholder="Enter from date" name="from">
+        </div>
+        <div class="form-group">
+          <label for="to">Till</label>
+          <input type="date" class="form-control" id="to" placeholder="Enter to date" name="to">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </body>
+</html>

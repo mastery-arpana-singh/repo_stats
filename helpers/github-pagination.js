@@ -1,8 +1,10 @@
 const axios = require("axios");
-const {token} = require("../config/config");
+const {token,base_url} = require("../config/config");
+const logger = require('../helpers/logger');
+const moment = require('moment');
+const headers = {'Authorization': `Bearer ${token}`};
 
-
-exports.getPaginatedResults = async (total, endCursor, repo, since) =>{
+exports.getPaginatedResults = async (total, endCursor, repo, since, until) =>{
     try {
 
     const times = (Math.ceil(total/100) -1)
@@ -13,7 +15,8 @@ exports.getPaginatedResults = async (total, endCursor, repo, since) =>{
 
 
     for (let i = 0; i < times; i++) {
-        console.log(i)
+        logger.info(`${moment()}: Calling for next records in repository ${repo}, count ${i+1}`);
+        //console.log("calling for repo ",repo, " call number ", i+1)
         const query = `
   {
     repository(owner: "masterysystems", name: "${repo}") {
@@ -21,7 +24,7 @@ exports.getPaginatedResults = async (total, endCursor, repo, since) =>{
         name
         target {
           ... on Commit {
-            history(since: "${since}", after:"${endCursor}") {
+            history(since: "${since}", until: "${until}", after:"${endCursor}") {
               totalCount
               pageInfo{
                 endCursor
@@ -50,15 +53,9 @@ exports.getPaginatedResults = async (total, endCursor, repo, since) =>{
     }
   }`
 
-        const githubAPI = `https://api.github.com/graphql`;
+        const githubAPI = `${base_url}/graphql`;
 
-        const data = await axios.post(githubAPI,{query:
-            query
-        },{
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            },
-        });
+        const data = await axios.post(githubAPI,{query:query},{headers: headers});
 
         const branch = data.data.data.repository.defaultBranchRef
         const pageInfo = branch.target.history.pageInfo
