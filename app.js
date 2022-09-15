@@ -6,9 +6,6 @@ const helmet = require('helmet')
 const apiRoutes = require('./routes')
 const path = require('path');
 
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocument = require('./swagger.json');
-
 //declaring an instance or creating an application instance
 const app = express()
 
@@ -23,11 +20,6 @@ app.all('*', (req, res, next) => {
     next();
 })
 app.use(helmet())
-app.use(
-    '/api-docs',
-    swaggerUi.serve,
-    swaggerUi.setup(swaggerDocument)
-);
 app.use(express.static(path.join(__dirname, 'public')));
 
 apiRoutes(app);

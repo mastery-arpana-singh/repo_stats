@@ -7,9 +7,9 @@ const headers = {'Authorization': `Bearer ${token}`};
 
 let result = null,count = 0, hasNextPage = null;
 
-exports.getRepoData = async (contributorsUrl, since, until, token, endCursor) =>{ 
+exports.getRepoData = async (contributorsUrl, since, until, token, endCursor, offset) =>{ 
     try {
-        let query = endCursor ? await this.queryWithEndCursor(since,until,endCursor) : await this.queryWithoutEndCursor(since,until) ;
+        let query = endCursor ? await this.queryWithEndCursor(since,until,endCursor,offset) : await this.queryWithoutEndCursor(since,until,offset) ;
         //console.log("query ",query);
         count ++;
         logger.info(`${moment()}: Calling Repo graphql query , count ${count} ,  endCursor : ${endCursor}, hasNextPage : ${hasNextPage}`);
@@ -30,20 +30,21 @@ exports.getRepoData = async (contributorsUrl, since, until, token, endCursor) =>
 
         if (endCursor) {
             hasNextPage = data.data.data.search.pageInfo.hasNextPage;
-            await this.getRepoData(contributorsUrl, since, until, token, endCursor);
+            await this.getRepoData(contributorsUrl, since, until, token, endCursor, offset);
         }
 
         return output;
     } catch(e) {
         //console.log("e is ",e)
+        count = 0;
         logger.info(`${moment()}: Some Error occured inside graphqlCall:getRepoData() ${e}`)
         throw  new Error(e)
     }
     
 }
 
-exports.queryWithoutEndCursor = async (since,until) => {
-    return `query myOrgRepos {search(query: "org:masterysystems", type: REPOSITORY, first: 100) {
+exports.queryWithoutEndCursor = async (since,until, offset) => {
+    return `query myOrgRepos {search(query: "org:masterysystems", type: REPOSITORY, first: ${offset}) {
         repositoryCount
         pageInfo {
         endCursor
@@ -93,9 +94,9 @@ exports.queryWithoutEndCursor = async (since,until) => {
         }`;
 }
 
-exports.queryWithEndCursor = async (since, until, endCursor) => {
+exports.queryWithEndCursor = async (since, until, endCursor, offset) => {
     return `query myOrgRepos {
-        search(query: "org:masterysystems", type: REPOSITORY, first: 100, after: "${endCursor}") {
+        search(query: "org:masterysystems", type: REPOSITORY, first: ${offset}, after: "${endCursor}") {
         repositoryCount
         pageInfo {
         endCursor
