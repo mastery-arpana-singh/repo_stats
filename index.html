@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Github Infomation Application</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+      div {
+        margin-bottom: 15px;
+        padding: 4px 12px;
+      }
+      .info {
+        background-color: #e7f3fe;
+        border-left: 6px solid #2196F3;
+      }
+      </style>
+  </head>
+  <body>
+    <div class="container" style="background-color:rgb(11, 180, 199);">
+      <h1>Github Infomation Application</h1>
+      <form action="http://localhost:3000/api/github/all-repo-details" method="POST">
+        <div class="form-group">
+          <label for="From">From</label>
+          <input type="date" class="form-control" id="from" placeholder="Enter from date" name="from">
+        </div>
+        <div class="form-group">
+          <label for="to">Till</label>
+          <input type="date" class="form-control" id="to" placeholder="Enter to date" name="to">
+        </div>
+        <div class="form-group">
+          <label for="offset">Select Offset</label>
+          <select class="form-control" id="offset" name="offset">
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="50" selected>50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <br>
+
+      <div class="info">
+        <p><strong>Info!</strong> Please do not provide date range more than 2 weeks.</p>
+      </div>
+  </body>
+</html>

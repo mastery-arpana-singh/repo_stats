@@ -1,1 +1,5 @@
 /node_modules
+.env
+.idea
+/data/output.json
+/logs/server.log

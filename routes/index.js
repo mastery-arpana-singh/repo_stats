@@ -1,6 +1,6 @@
 const prefix = '/api';
-const Test = require('./test');
+const GitHubApi = require('./githubApi');
 
 module.exports = (app) => {
-    app.use(`${prefix}/test`,Test)
+    app.use(`${prefix}/github`,GitHubApi)
 }

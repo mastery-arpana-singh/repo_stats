@@ -20,7 +20,6 @@ app.all('*', (req, res, next) => {
     next();
 })
 app.use(helmet())
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 apiRoutes(app);
@@ -46,5 +45,7 @@ app.use(function(err, req, res, next) {
         error: err
     });
 });
+
+
 
 module.exports = app;
